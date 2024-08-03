@@ -1,0 +1,12 @@
+[submodule "third-party/dronecan_dsdlc"]
+	path = third-party/dronecan_dsdlc
+	url = https://github.com/dronecan/dronecan_dsdlc.git
+[submodule "third-party/pydronecan"]
+	path = third-party/pydronecan
+	url = https://github.com/dronecan/pydronecan
+[submodule "third-party/DSDL"]
+	path = third-party/DSDL
+	url = https://github.com/dronecan/DSDL.git
+[submodule "third-party/libcanard"]
+	path = third-party/libcanard
+	url = https://github.com/dronecan/libcanard.git
