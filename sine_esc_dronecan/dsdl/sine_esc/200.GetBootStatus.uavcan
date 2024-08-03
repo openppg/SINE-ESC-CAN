@@ -1,0 +1,5 @@
+OVERRIDE_SIGNATURE 0x8BA32EBA566F5713
+
+---
+
+uint8       mode            # 1 APP, 2 Bootloader

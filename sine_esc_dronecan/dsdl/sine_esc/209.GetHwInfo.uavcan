@@ -1,0 +1,10 @@
+OVERRIDE_SIGNATURE 0x65DC98CD51449263
+
+---
+
+uint16      hardware_id
+uint16      bootloader_version
+uint16      app_version
+uint16      resv1
+uint16      resv2
+uint8[16]   sn_code

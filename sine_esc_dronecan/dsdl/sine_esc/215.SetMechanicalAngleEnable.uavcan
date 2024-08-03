@@ -1,0 +1,7 @@
+OVERRIDE_SIGNATURE 0x8776979B269EFCFF
+
+uint8       enable_mech_nagle   # Enable mechanical angle
+
+---
+
+uint8       flag                # 0 indicate successful

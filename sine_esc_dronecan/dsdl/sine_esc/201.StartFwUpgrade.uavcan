@@ -1,0 +1,9 @@
+# Expected data signature is unknown, we don't know the orignal filename and namespace
+
+uint16      hardware_id
+uint16      filse_size_kb
+uint16      file_crc
+
+---
+
+uint8       state           # 0 firmware normal, 1 firmware error

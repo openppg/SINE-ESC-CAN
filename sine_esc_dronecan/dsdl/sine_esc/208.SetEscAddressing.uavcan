@@ -1,0 +1,14 @@
+OVERRIDE_SIGNATURE 0x1BDDF796A3CF4723
+
+# The default ID of the ESC upon power-up is 0x20. To address the ESC, the PWM
+# signal must be utilized (the flight controller must identify the ESC's
+# address through the PWM channel). The addressing instruction will only be
+# executed if the PWM pulse width received by the ESC falls between 300~500us.
+# The ESC will acknowledge addressing instructions. The address will not be
+# retained and will revert to the default value once power is disconnected.
+
+uint8       esc_id
+
+---
+uint8       esc_id
+uint8       valid_flag

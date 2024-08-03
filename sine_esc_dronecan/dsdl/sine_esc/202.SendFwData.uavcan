@@ -1,0 +1,13 @@
+OVERRIDE_SIGNATURE 0xF8D50AFD350A8FBB
+
+# Please note that it starts from the 32nd byte of the file and continues until
+# the end of the file. Additionally, the index is used to keep track of each
+# data transfer and starts counting from 0.
+
+uint16      index
+uint8[256]  data
+
+---
+
+uint8       state           # 0 Successful, 1 Data Error
+uint16      next_index

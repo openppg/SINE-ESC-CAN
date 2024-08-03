@@ -1,0 +1,7 @@
+OVERRIDE_SIGNATURE 0x77ED7522030ED464
+
+int16       mech_angle      # unit degrees, greater than 0 forward,Less than 0 reverse
+
+---
+
+uint8       flag            # 0 indicate successful

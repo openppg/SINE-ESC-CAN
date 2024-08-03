@@ -1,0 +1,15 @@
+OVERRIDE_SIGNATURE 0x40C65964649CAE65
+
+# beep_data Data Format
+# struct beep {
+#       uint8 tone;         # 0~20, Tone
+#       uint8 duration;     # Unit 10ms, Duration
+#       uint8 volume;       # 0~100, Volume
+# };
+
+uint8       beep_num        # 1-10, number of sounds
+uint8[<=30] beep_data       # sound Data
+
+---
+
+uint8       flag            # 0 Indicates successful

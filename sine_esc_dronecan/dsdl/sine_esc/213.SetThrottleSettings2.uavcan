@@ -1,0 +1,21 @@
+OVERRIDE_SIGNATURE 0x81B48C174CDA4C7A
+
+uint16      pwm_us          # unit 0.1us
+
+---
+
+uint16      recv_pwm        # 0.1us ESC receives PWM
+uint16      comm_pwm        # 0.1us ESC receives communication PWM
+int32       speed           # rpm motor speed
+int16       current         # 0.1A motor line current
+int16       bus_current     # 0.1A bus current
+uint16      voltage         # 0.1v bus voltage
+uint16      v_modulation    # 0.1 modulation ratio
+int16       mos_temp        # 0.1 degree Mos temperature
+int16       cap_temp        # 0.1 degree capacitor temperature
+int16       mcu_temp        # 0.1 degrees MCU temperature
+uint16      running_error   # Running error code
+uint16      selfcheck_error # Self-check error code
+int16       motor_temp      # 0.1 degree motor temperature
+uint16      time_10ms       # 10ms ESC running time
+uint8[3]    resv            # reserved word
