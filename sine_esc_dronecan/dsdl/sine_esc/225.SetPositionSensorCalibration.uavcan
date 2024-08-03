@@ -1,0 +1,8 @@
+OVERRIDE_SIGNATURE 0xB970F68E635BAD53
+
+uint16      cmd_id          # 0x20 Calibrating sensor
+uint8[<=48] data            # 1 enable calibration
+
+---
+
+uint8       flag            # 0 indicates settings successful, other abnormal state

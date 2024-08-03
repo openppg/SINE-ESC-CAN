@@ -1,0 +1,5 @@
+OVERRIDE_SIGNATURE 0xDEDEF673E51F542E
+
+---
+
+uint8       alloc_id_state # 0 success; 1 can id error

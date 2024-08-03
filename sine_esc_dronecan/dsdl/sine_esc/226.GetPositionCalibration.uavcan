@@ -1,0 +1,11 @@
+OVERRIDE_SIGNATURE 0xA895FDA3617029D2
+
+
+uint16      cmd_id          # 0x21 Obtain status
+int32       resv_data       # 0x00
+
+---
+
+uint16      cmd_id          # 0x21
+uint8       flag            # 0 Indicates successful acquisition of data
+uint8       calc_state      # 1 calibrating,2 successful calibration,3 failed

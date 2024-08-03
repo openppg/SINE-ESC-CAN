@@ -1,0 +1,7 @@
+OVERRIDE_SIGNATURE 0x1653C41DA4E45824
+
+uint16      pwm_us          # Unit 0.1us
+
+---
+
+uint8       valid_flag

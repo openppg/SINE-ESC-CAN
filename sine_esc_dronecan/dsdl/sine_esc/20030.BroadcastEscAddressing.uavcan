@@ -1,0 +1,3 @@
+OVERRIDE_SIGNATURE 0x5807C97610B3F91C
+
+uint8       new_esc_id      # esc id Range:1~127

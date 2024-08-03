@@ -1,0 +1,3 @@
+OVERRIDE_SIGNATURE 0xA922986F6F2D9C0E
+
+int16       mech_angle      # Unit degrees

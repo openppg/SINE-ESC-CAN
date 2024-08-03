@@ -1,0 +1,7 @@
+OVERRIDE_SIGNATURE 0x1A1EAE8EF6FFA44
+
+uint16      upload_hz       # unit hz, 0~400, 0 Indicates closing upload
+
+---
+
+uint8       flag            # 0 indicates successful,1 indicates data illegal

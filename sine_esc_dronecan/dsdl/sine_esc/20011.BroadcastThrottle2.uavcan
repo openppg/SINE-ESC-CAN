@@ -1,0 +1,6 @@
+OVERRIDE_SIGNATURE 0xAA4B857FBD34B46F
+
+uint8       esc_id_1
+uint16      pwm_us_1        # Unit 0.1us
+uint8       esc_id_2
+uint16      pwm_us_2        # Unit 0.1us

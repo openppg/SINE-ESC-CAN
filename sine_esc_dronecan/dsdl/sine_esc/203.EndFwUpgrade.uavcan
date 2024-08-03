@@ -1,0 +1,5 @@
+OVERRIDE_SIGNATURE 0xD1AC3920854F5803
+
+---
+
+uint8       state           # 0 upgrade successfully, 1 upgrade error
