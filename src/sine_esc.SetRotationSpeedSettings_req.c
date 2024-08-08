@@ -1,20 +1,20 @@
 #define CANARD_DSDLC_INTERNAL
-#include <sine_esc.GetRotationSpeedSettings_req.h>
-#include <sine_esc.GetRotationSpeedSettings_res.h>
+#include <sine_esc.SetRotationSpeedSettings_req.h>
+#include <sine_esc.SetRotationSpeedSettings_res.h>
 #include <string.h>
 
 #ifdef CANARD_DSDLC_TEST_BUILD
 #include <test_helpers.h>
 #endif
 
-uint32_t sine_esc_GetRotationSpeedSettingsRequest_encode(struct sine_esc_GetRotationSpeedSettingsRequest* msg, uint8_t* buffer
+uint32_t sine_esc_SetRotationSpeedSettingsRequest_encode(struct sine_esc_SetRotationSpeedSettingsRequest* msg, uint8_t* buffer
 #if CANARD_ENABLE_TAO_OPTION
     , bool tao
 #endif
 ) {
     uint32_t bit_ofs = 0;
-    memset(buffer, 0, SINE_ESC_GETROTATIONSPEEDSETTINGS_REQUEST_MAX_SIZE);
-    _sine_esc_GetRotationSpeedSettingsRequest_encode(buffer, &bit_ofs, msg, 
+    memset(buffer, 0, SINE_ESC_SETROTATIONSPEEDSETTINGS_REQUEST_MAX_SIZE);
+    _sine_esc_SetRotationSpeedSettingsRequest_encode(buffer, &bit_ofs, msg, 
 #if CANARD_ENABLE_TAO_OPTION
     tao
 #else
@@ -27,14 +27,14 @@ uint32_t sine_esc_GetRotationSpeedSettingsRequest_encode(struct sine_esc_GetRota
 /*
   return true if the decode is invalid
  */
-bool sine_esc_GetRotationSpeedSettingsRequest_decode(const CanardRxTransfer* transfer, struct sine_esc_GetRotationSpeedSettingsRequest* msg) {
+bool sine_esc_SetRotationSpeedSettingsRequest_decode(const CanardRxTransfer* transfer, struct sine_esc_SetRotationSpeedSettingsRequest* msg) {
 #if CANARD_ENABLE_TAO_OPTION
-    if (transfer->tao && (transfer->payload_len > SINE_ESC_GETROTATIONSPEEDSETTINGS_REQUEST_MAX_SIZE)) {
+    if (transfer->tao && (transfer->payload_len > SINE_ESC_SETROTATIONSPEEDSETTINGS_REQUEST_MAX_SIZE)) {
         return true; /* invalid payload length */
     }
 #endif
     uint32_t bit_ofs = 0;
-    if (_sine_esc_GetRotationSpeedSettingsRequest_decode(transfer, &bit_ofs, msg,
+    if (_sine_esc_SetRotationSpeedSettingsRequest_decode(transfer, &bit_ofs, msg,
 #if CANARD_ENABLE_TAO_OPTION
     transfer->tao
 #else
@@ -56,8 +56,8 @@ bool sine_esc_GetRotationSpeedSettingsRequest_decode(const CanardRxTransfer* tra
 }
 
 #ifdef CANARD_DSDLC_TEST_BUILD
-struct sine_esc_GetRotationSpeedSettingsRequest sample_sine_esc_GetRotationSpeedSettingsRequest_msg(void) {
-    struct sine_esc_GetRotationSpeedSettingsRequest msg;
+struct sine_esc_SetRotationSpeedSettingsRequest sample_sine_esc_SetRotationSpeedSettingsRequest_msg(void) {
+    struct sine_esc_SetRotationSpeedSettingsRequest msg;
 
     msg.speed = (int32_t)random_bitlen_signed_val(32);
     return msg;
