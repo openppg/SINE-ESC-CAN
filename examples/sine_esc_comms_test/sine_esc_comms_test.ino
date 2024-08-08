@@ -54,4 +54,55 @@ void setup(void)
 void loop(void)
 {
     adapter.processTxRxOnce();
+
+    static bool hasReceivedFirstStatusInfo = false;
+    if (!hasReceivedFirstStatusInfo) {
+        const SineEscModel &model = esc.getModel();
+        if (model.hasBroadcastStatusInfo) {
+            hasReceivedFirstStatusInfo = true;
+            Serial.println("Received first broadcast status message from ESC");
+
+            Serial.println("Setting throttle PWM...");
+            esc.setThrottleSettings2(1100);
+        }
+    }
+
+    static unsigned long lastMillis = millis();
+    unsigned long now = millis();
+    if ((now - lastMillis) >= 1000) {
+        lastMillis = now;
+
+        const SineEscModel &model = esc.getModel();
+
+        if (model.hasBroadcastStatusInfo) {
+            const sine_esc_BroadcastStatusInfo *b = &model.broadcastStatusInfo;
+            Serial.println("Got broadcast status info");
+
+            Serial.print("Speed: ");
+            Serial.print(b->speed);
+            Serial.println(" rpm");
+
+            Serial.print("Current: ");
+            Serial.print(b->current);
+            Serial.println(" A");
+
+            Serial.print("Voltage: ");
+            Serial.print(b->voltage);
+            Serial.println(" V");
+
+            Serial.print("MOS Temperature: ");
+            Serial.print(b->mos_temp);
+            Serial.println(" °C");
+        }
+
+        if (model.hasSetThrottleSettings2Response) {
+            Serial.println("Got SetThrottleSettings2 response");
+        }
+
+        if (model.hasSetRotationSpeedSettingsResponse) {
+            Serial.println("Got SetRotationSpeedSettings response");
+        }
+
+        esc.clearModelReceiveFlags();
+    }
 }
