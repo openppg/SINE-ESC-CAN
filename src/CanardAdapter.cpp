@@ -5,6 +5,10 @@
 
 // -----------------------------------------------------------------------------
 
+#define STALE_CHECK_INTERVAL_USEC CANARD_RECOMMENDED_STALE_TRANSFER_CLEANUP_INTERVAL_USEC
+
+// -----------------------------------------------------------------------------
+
 static uint64_t getTimestamp(void)
 {
     static uint64_t baseTime = 0;
@@ -54,6 +58,8 @@ void CanardAdapter::begin(uint8_t *memoryPool, size_t memoryPoolSize)
                _onTransferReceivedTrampoline,
                _shouldAcceptTransferTrampoline,
                this);
+
+    _lastStaleCheckTimestamp = getTimestamp();
 }
 
 void CanardAdapter::setLocalNodeId(uint8_t selfNodeId)
@@ -93,6 +99,13 @@ void CanardAdapter::processTxRxOnce(void)
         }
 
         canardHandleRxFrame(&_canard, &rxFrame, timestamp);
+    }
+
+    // Remove stale transfers from the queue. The timing only needs to be
+    // approximate for triggering the stale check
+    if ((timestamp - _lastStaleCheckTimestamp) >= STALE_CHECK_INTERVAL_USEC) {
+        _lastStaleCheckTimestamp = getTimestamp();
+        canardCleanupStaleTransfers(&_canard, _lastStaleCheckTimestamp);
     }
 }
 

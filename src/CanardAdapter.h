@@ -68,6 +68,7 @@ private:
     CanardInstance _canard;
     std::vector<CanardAdapterNode*> _nodes;
     Adafruit_MCP2515 *_mcp;
+    uint64_t _lastStaleCheckTimestamp;
 };
 
 
