@@ -46,6 +46,7 @@ void CanardAdapter::begin(uint8_t *memoryPool, size_t memoryPoolSize)
 {
     if (memoryPool == NULL || memoryPoolSize == 0) {
         // Handle error: invalid memory pool
+        Serial.println("CanardAdapter::begin - Bad memory pool");
         return;
     }
     canardInit(&_canard,
@@ -65,6 +66,12 @@ void CanardAdapter::processTxRxOnce(void)
 {
     // Transmitting
     for (const CanardCANFrame* txf = NULL; (txf = canardPeekTxQueue(&_canard)) != NULL;) {
+
+        Serial.print("CanardAdapter::processTxRxOnce - TX - 0x");
+        Serial.print(txf->id, HEX);
+        Serial.print(" - ");
+        Serial.println(txf->data_len);
+
         _mcp->beginExtendedPacket(txf->id);
         _mcp->write(txf->data, txf->data_len);
 
@@ -91,6 +98,11 @@ void CanardAdapter::processTxRxOnce(void)
         for (int i = 0; i < rxFrame.data_len; i++) {
             rxFrame.data[i] = _mcp->read();
         }
+
+        Serial.print("CanardAdapter::processTxRxOnce - RX - 0x");
+        Serial.print(rxFrame.id, HEX);
+        Serial.print(" - ");
+        Serial.println(rxFrame.data_len);
 
         canardHandleRxFrame(&_canard, &rxFrame, timestamp);
     }
@@ -120,6 +132,8 @@ bool CanardAdapter::_shouldAcceptTransferTrampoline(const CanardInstance* instan
 
 void CanardAdapter::_addNode(CanardAdapterNode &node)
 {
+    Serial.println("CanardAdapter::_addNode");
+
     _nodes.push_back(&node);
 }
 
@@ -140,6 +154,18 @@ bool CanardAdapter::_shouldAcceptTransfer(uint64_t* out_data_type_signature,
         }
     }
 
+    Serial.print("CanardAdapter::_shouldAcceptTransfer - 0x");
+    Serial.print(data_type_id, HEX);
+    Serial.print(" - ");
+    Serial.print(transfer_type);
+    Serial.print(" - ");
+    Serial.print(source_node_id, HEX);
+    if (accept) {
+        Serial.println(" - Accepted");
+    } else {
+        Serial.println(" - Rejected");
+    }
+
     return accept;
 }
 
@@ -148,4 +174,11 @@ void CanardAdapter::_onTransferReceived(CanardRxTransfer* transfer)
     for (CanardAdapterNode *node : _nodes) {
         node->onTransferReceived(transfer);
     }
+
+    Serial.print("CanardAdapter::_onTransferReceived - ");
+    Serial.print(transfer->data_type_id, HEX);
+    Serial.print(" - ");
+    Serial.print(transfer->transfer_type);
+    Serial.print(" - ");
+    Serial.println(transfer->source_node_id, HEX);
 }
