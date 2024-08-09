@@ -44,6 +44,10 @@ CanardAdapter::CanardAdapter(Adafruit_MCP2515 &mcp)
 
 void CanardAdapter::begin(uint8_t *memoryPool, size_t memoryPoolSize)
 {
+    if (memoryPool == NULL || memoryPoolSize == 0) {
+        // Handle error: invalid memory pool
+        return;
+    }
     canardInit(&_canard,
                memoryPool,
                memoryPoolSize,

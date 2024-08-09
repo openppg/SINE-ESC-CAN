@@ -36,7 +36,7 @@
 
 static Adafruit_MCP2515 mcp(CS_PIN);
 static CanardAdapter adapter(mcp);
-static uint8_t memory_pool[1024];
+static uint8_t memory_pool[1024] __attribute__((aligned(8)));
 
 static SineEsc esc(adapter);
 
